@@ -241,3 +241,27 @@ Client.prototype.getRepositoryImport = function(repositoryImportId, callback) {
 Client.prototype.getPermissions = function(userId, callback) {
   this.get('/api/permissions/' + userId + '.json', null, callback);
 };
+
+
+/**
+ * Integration Resource
+ * See: http://api.beanstalkapp.com/integration.html
+ */
+
+/**
+ * Find All Integrations
+ * @param  {Integer}   repositoryId Repository ID
+ * @param  {Function} callback     Gets called after request is complete
+ */
+Client.prototype.getIntegrations = function(repositoryId, callback) {
+  this.get('/api/repositories/' + repositoryId + '/integrations.json', null, callback);
+};
+/**
+ * Find Integration
+ * @param  {Integer}   repositoryId Repository ID
+ * @param  {Integer}   integrationId Integration ID
+ * @param  {Function} callback     Gets called after request is complete
+ */
+Client.prototype.getIntegration = function(repositoryId, integrationId, callback) {
+  this.get('/api/repositories/' + repositoryId + '/integrations/' + integrationId + '.json', null, callback);
+};
