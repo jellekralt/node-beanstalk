@@ -3,6 +3,8 @@ node-beanstalk
 
 A Node.js wrapper for the Beanstalk API
 
+This is a work in progress! For now only 'get' functions are available.
+
 # Install
 
 ```bash
