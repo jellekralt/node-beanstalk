@@ -84,7 +84,7 @@ Client.prototype.getPlans = function(callback) {
 
 /** 
  * User functions
- * http://api.beanstalkapp.com/user.html
+ * See: http://api.beanstalkapp.com/user.html
  */
 
 /**
@@ -115,7 +115,7 @@ Client.prototype.getCurrentUser = function(callback) {
 
 /** 
  * Public Key Resource
- * http://api.beanstalkapp.com/public_key.html
+ * See: http://api.beanstalkapp.com/public_key.html
  */
 
 /**
@@ -146,7 +146,7 @@ Client.prototype.getPublicKey = function(keyId, callback) {
 
 /**
  * FeedKey Resource
- * http://api.beanstalkapp.com/feed_key.html
+ * See: http://api.beanstalkapp.com/feed_key.html
  */
 
 /**
@@ -159,14 +159,46 @@ Client.prototype.getFeedKey = function(callback) {
 
 
 /** 
- * Repository functions
+ * Repository Resource
  * See: http://api.beanstalkapp.com/repository.html
  */
 
 /**
- * Gets all repositories 
+ * Find All Repositories
+ * @param  {Object} [params] Find params (optional)
  * @param  {Function} callback Gets called after request is complete
  */
-Client.prototype.getRepositories = function(callback) {
-  this.get('/api/repositories.json', null, callback);
+Client.prototype.getRepositories = function(params, callback) {
+  if(typeof params === 'function') {
+    callback = params;
+    params = null;
+  }
+  this.get('/api/repositories.json', params, callback);
+};
+
+/**
+ * Find Repository
+ * @param  {Object} repository  Repository ID
+ * @param  {Function} callback Gets called after request is complete
+ */
+Client.prototype.getRepository = function(repositoryId, callback) {
+  this.get('/api/repositories/' + repositoryId + '.json', null, callback);
+};
+
+/**
+ * Find Branches
+ * @param  {Object} repository  Repository ID
+ * @param  {Function} callback Gets called after request is complete
+ */
+Client.prototype.getBranches = function(repositoryId, callback) {
+  this.get('/api/repositories/' + repositoryId + '/branches.json', null, callback);
+};
+
+/**
+ * Find Tags
+ * @param  {Object} repository  Repository ID
+ * @param  {Function} callback Gets called after request is complete
+ */
+Client.prototype.getTags = function(repositoryId, callback) {
+  this.get('/api/repositories/' + repositoryId + '/tags.json', null, callback);
 };
