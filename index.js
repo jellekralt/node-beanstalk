@@ -202,3 +202,27 @@ Client.prototype.getBranches = function(repositoryId, callback) {
 Client.prototype.getTags = function(repositoryId, callback) {
   this.get('/api/repositories/' + repositoryId + '/tags.json', null, callback);
 };
+
+
+/**
+ * Repository Import Resource
+ * See: http://api.beanstalkapp.com/repository_import.html
+ */
+
+/**
+ * Find All Repository Imports
+ * @param  {Object} [params] Find params (optional)
+ * @param  {Function} callback Gets called after request is complete
+ */
+Client.prototype.getRepositoryImports = function(callback) {
+  this.get('/api/repository_imports.json', null, callback);
+};
+
+/**
+ * Find Repository Import
+ * @param  {Object} repository  Repository Import ID
+ * @param  {Function} callback Gets called after request is complete
+ */
+Client.prototype.getRepositoryImport = function(repositoryImportId, callback) {
+  this.get('/api/repository_imports/' + repositoryImportId + '.json', null, callback);
+};
