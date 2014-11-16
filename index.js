@@ -1,8 +1,16 @@
 'use-strict';
 
+/** Dependencies */
 var querystring = require('querystring');
 var request = require('request');
 
+/**
+ * Client
+ * @param  {String} account  Beanstalk account name
+ * @param  {String} username Username
+ * @param  {String} token    Access token
+ * @return {Client}          Returns itself
+ */
 var Client = function(account, username, token) {
   this.beanstalkUrl = 'https://' + account + '.beanstalkapp.com';
   this.authHeader = "Basic " + new Buffer(username + ":" + token).toString("base64");
@@ -10,7 +18,13 @@ var Client = function(account, username, token) {
   return this;
 };
 
-Client.prototype.get = function(path, cb) {
+/**
+ * Wrapper function for the GET requests
+ * @param  {String}   path     Path to the resource
+ * @param  {Object}   params   GET parameters
+ * @param  {Function} callback Gets called after request is complete
+ */
+Client.prototype.get = function(path, params, callback) {
 
   request({
       url: this.beanstalkUrl + path,
@@ -20,21 +34,30 @@ Client.prototype.get = function(path, cb) {
         'User-Agent': 'Node.js Beanstalk Wrapper'
       }
     }, 
-    function (error, response, body) {
-      cb(body);
+    function (error, data, response) {
+      callback(error, data, response);
     }
   );
 
 };
 
-Client.prototype.getRepositories = function(cb) {
-
-  this.get('/api/repositories.json', function(data) {
-    cb(data);
-  });
-
+/**
+ * Gets all repositories 
+ * See: http://api.beanstalkapp.com/repository.html
+ * @param  {Object}   params   GET parameters
+ * @param  {Function} callback Gets called after request is complete
+ */
+Client.prototype.getRepositories = function(params, callback) {
+  this.get('/api/repositories.json', params, callback);
 };
 
+/**
+ * Client constuctor
+ * @param  {String} account  Beanstalk account name
+ * @param  {String} username Username
+ * @param  {String} token    Access token
+ * @return {Client}          Returns a new instance of the Client object
+ */
 module.exports.createClient = function(account, username, token) {
   return new Client(account, username, token);
 };
