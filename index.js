@@ -52,11 +52,14 @@ Client.prototype.get = function(path, params, callback) {
 
 };
 
-/** Account functions */
+
+/**
+ * Account functions
+ * See: http://api.beanstalkapp.com/account.html
+ */
 
 /**
  * Gets the Beanstalk account data
- * See: http://api.beanstalkapp.com/account.html
  * @param  {Function} callback Gets called after request is complete
  */
 Client.prototype.getAccount = function(callback) {
@@ -64,11 +67,58 @@ Client.prototype.getAccount = function(callback) {
 };
 
 
-/** Repository functions */
+/** 
+ * Plan functions
+ * See: http://api.beanstalkapp.com/plan.html
+ */
+
+/**
+ * Gets all plans
+ * @param  {Function} callback Gets called after request is complete
+ */
+Client.prototype.getPlans = function(callback) {
+  this.get('/api/plans.json', null, callback);
+};
+
+
+/** 
+ * User functions
+ * http://api.beanstalkapp.com/user.html
+ */
+
+/**
+ * Gets all users
+ * @param  {Function} callback Gets called after request is complete
+ */
+Client.prototype.getUsers = function(callback) {
+  this.get('/api/users.json', null, callback);
+};
+
+/**
+ * Gets a user
+ * @param  {Integer}  userId  User ID
+ * @param  {Function} callback Gets called after request is complete
+ */
+Client.prototype.getUser = function(userId, callback) {
+  this.get('/api/users/' + userId + '.json', null, callback);
+};
+
+/**
+ * Gets the current user
+ * @param  {Function} callback Gets called after request is complete
+ */
+Client.prototype.getCurrentUser = function(callback) {
+  this.get('/api/users/current.json', null, callback);
+};
+
+
+/** 
+ * Repository functions
+ * See: http://api.beanstalkapp.com/repository.html
+ */
 
 /**
  * Gets all repositories 
- * See: http://api.beanstalkapp.com/repository.html
  * @param  {Function} callback Gets called after request is complete
  */
 Client.prototype.getRepositories = function(callback) {
