@@ -43,7 +43,8 @@ Client.prototype.get = function(path, params, callback) {
         'Authorization': this.authHeader,
         'Content-Type': 'application/json',
         'User-Agent': 'Node.js Beanstalk Wrapper'
-      }
+      },
+      qs: params
     }, 
     function (error, response, data) {
       callback(error, data);
@@ -111,6 +112,35 @@ Client.prototype.getCurrentUser = function(callback) {
   this.get('/api/users/current.json', null, callback);
 };
 
+
+/** 
+ * Public key functions
+ * http://api.beanstalkapp.com/public_key.html
+ */
+
+/**
+ * Find All Public Keys
+ * @param  {Function} callback Gets called after request is complete
+ */
+Client.prototype.getPublicKeys = function(callback) {
+  this.get('/api/public_keys.json', null, callback);
+};
+
+/**
+ * Find All Public Keys Owned by a Specific User
+ * @param  {Function} callback Gets called after request is complete
+ */
+Client.prototype.getPublicKeysByUser = function(userId, callback) {
+  this.get('/api/public_keys.json', { 'user_id': userId }, callback);
+};
+
+/**
+ * Find All Public Keys Owned by a Specific User
+ * @param  {Function} callback Gets called after request is complete
+ */
+Client.prototype.getPublicKey = function(keyId, callback) {
+  this.get('/api/public_keys/' + keyId + '.json', null, callback);
+};
 
 /** 
  * Repository functions
