@@ -19,6 +19,17 @@ var Client = function(account, username, token) {
 };
 
 /**
+ * Client constuctor
+ * @param  {String} account  Beanstalk account name
+ * @param  {String} username Username
+ * @param  {String} token    Access token
+ * @return {Client}          Returns a new instance of the Client object
+ */
+module.exports.createClient = function(account, username, token) {
+  return new Client(account, username, token);
+};
+
+/**
  * Wrapper function for the GET requests
  * @param  {String}   path     Path to the resource
  * @param  {Object}   params   GET parameters
@@ -34,8 +45,8 @@ Client.prototype.get = function(path, params, callback) {
         'User-Agent': 'Node.js Beanstalk Wrapper'
       }
     }, 
-    function (error, data, response) {
-      callback(error, data, response);
+    function (error, response, data) {
+      callback(error, data);
     }
   );
 
@@ -47,17 +58,6 @@ Client.prototype.get = function(path, params, callback) {
  * @param  {Object}   params   GET parameters
  * @param  {Function} callback Gets called after request is complete
  */
-Client.prototype.getRepositories = function(params, callback) {
-  this.get('/api/repositories.json', params, callback);
-};
-
-/**
- * Client constuctor
- * @param  {String} account  Beanstalk account name
- * @param  {String} username Username
- * @param  {String} token    Access token
- * @return {Client}          Returns a new instance of the Client object
- */
-module.exports.createClient = function(account, username, token) {
-  return new Client(account, username, token);
+Client.prototype.getRepositories = function(callback) {
+  this.get('/api/repositories.json', null, callback);
 };
