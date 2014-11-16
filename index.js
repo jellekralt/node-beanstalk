@@ -178,7 +178,7 @@ Client.prototype.getRepositories = function(params, callback) {
 
 /**
  * Find Repository
- * @param  {Object} repository  Repository ID
+ * @param  {Object} repositoryId  Repository ID
  * @param  {Function} callback Gets called after request is complete
  */
 Client.prototype.getRepository = function(repositoryId, callback) {
@@ -187,7 +187,7 @@ Client.prototype.getRepository = function(repositoryId, callback) {
 
 /**
  * Find Branches
- * @param  {Object} repository  Repository ID
+ * @param  {Object} repositoryId  Repository ID
  * @param  {Function} callback Gets called after request is complete
  */
 Client.prototype.getBranches = function(repositoryId, callback) {
@@ -196,7 +196,7 @@ Client.prototype.getBranches = function(repositoryId, callback) {
 
 /**
  * Find Tags
- * @param  {Object} repository  Repository ID
+ * @param  {Object} repositoryId  Repository ID
  * @param  {Function} callback Gets called after request is complete
  */
 Client.prototype.getTags = function(repositoryId, callback) {
@@ -220,9 +220,24 @@ Client.prototype.getRepositoryImports = function(callback) {
 
 /**
  * Find Repository Import
- * @param  {Object} repository  Repository Import ID
+ * @param  {Object} repositoryImportId  Repository Import ID
  * @param  {Function} callback Gets called after request is complete
  */
 Client.prototype.getRepositoryImport = function(repositoryImportId, callback) {
   this.get('/api/repository_imports/' + repositoryImportId + '.json', null, callback);
+};
+
+
+/**
+ * Permission Resource
+ * See: Permission Resource
+ */
+
+/**
+ * Find Permissions
+ * @param  {Object} userId  User ID
+ * @param  {Function} callback Gets called after request is complete
+ */
+Client.prototype.getPermissions = function(userId, callback) {
+  this.get('/api/permissions/' + userId + '.json', null, callback);
 };
