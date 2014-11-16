@@ -114,7 +114,7 @@ Client.prototype.getCurrentUser = function(callback) {
 
 
 /** 
- * Public key functions
+ * Public Key Resource
  * http://api.beanstalkapp.com/public_key.html
  */
 
@@ -128,6 +128,7 @@ Client.prototype.getPublicKeys = function(callback) {
 
 /**
  * Find All Public Keys Owned by a Specific User
+ * @param  {Integer}  userId  User ID
  * @param  {Function} callback Gets called after request is complete
  */
 Client.prototype.getPublicKeysByUser = function(userId, callback) {
@@ -136,11 +137,26 @@ Client.prototype.getPublicKeysByUser = function(userId, callback) {
 
 /**
  * Find All Public Keys Owned by a Specific User
+ * @param  {Integer}  keyId  Public Key ID
  * @param  {Function} callback Gets called after request is complete
  */
 Client.prototype.getPublicKey = function(keyId, callback) {
   this.get('/api/public_keys/' + keyId + '.json', null, callback);
 };
+
+/**
+ * FeedKey Resource
+ * http://api.beanstalkapp.com/feed_key.html
+ */
+
+/**
+ * Find FeedKey for Current User
+ * @param  {Function} callback Gets called after request is complete
+ */
+Client.prototype.getFeedKey = function(callback) {
+  this.get('/api/feed_key.json', null, callback);
+};
+
 
 /** 
  * Repository functions
