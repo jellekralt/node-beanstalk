@@ -256,6 +256,7 @@ Client.prototype.getPermissions = function(userId, callback) {
 Client.prototype.getIntegrations = function(repositoryId, callback) {
   this.get('/api/repositories/' + repositoryId + '/integrations.json', null, callback);
 };
+
 /**
  * Find Integration
  * @param  {Integer}   repositoryId Repository ID
@@ -264,4 +265,54 @@ Client.prototype.getIntegrations = function(repositoryId, callback) {
  */
 Client.prototype.getIntegration = function(repositoryId, integrationId, callback) {
   this.get('/api/repositories/' + repositoryId + '/integrations/' + integrationId + '.json', null, callback);
+};
+
+
+/**
+ * Changeset Resource
+ * See: http://api.beanstalkapp.com/changeset.html
+ */
+
+/**
+ * Find All Changesets
+ * @param  {Function} callback Gets called after request is complete
+ */
+Client.prototype.getChangesets = function(callback) {
+  this.get('/api/changesets.json', null, callback);
+};
+
+/**
+ * Find All Changesets for Repository
+ * @param  {Integer} repositoryId Repository ID
+ * @param  {Object} [params] Find params (optional)
+ * @param  {Function} callback Gets called after request is complete
+ */
+Client.prototype.getChangesetsForRepository = function(repositoryId, params, callback) {
+  if(typeof params === 'function') {
+    callback = params;
+    params = { repository_id: repositoryId };
+  } else {
+    params.repository_id = repositoryId;
+  }
+  this.get('/api/changesets/repository.json', params, callback);
+};
+
+/**
+ * Find Changeset
+ * @param  {Integer}   repositoryId Repository ID
+ * @param  {Integer}   revisionId Revision ID
+ * @param  {Function} callback     Gets called after request is complete
+ */
+Client.prototype.getChangeset = function(repositoryId, revisionId, callback) {
+  this.get('/api/changesets/' + revisionId + '.json?repository_id=' + repositoryId, null, callback);
+};
+
+/**
+ * Find Changeset Diffs
+ * @param  {Integer}   repositoryId Repository ID
+ * @param  {Integer}   revisionId Revision ID
+ * @param  {Function} callback     Gets called after request is complete
+ */
+Client.prototype.getChangesetDiffs = function(repositoryId, revisionId, callback) {
+  this.get('/api/changesets/' + revisionId + '/differences.json?repository_id=' + repositoryId, null, callback);
 };
