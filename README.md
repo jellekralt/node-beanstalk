@@ -5,19 +5,22 @@ A Node.js wrapper for the Beanstalk API
 
 # Install
 
-    npm install beanstalk
-
+```bash
+npm install beanstalk
+```
 # Usage 
 
-    // Create an API token: https://ACCOUNTNAME.beanstalkapp.com/access_tokens
-    
-    var beanstalk = require("beanstalk").createClient("account", "username", "token");
+```javascript
+// Create an API token: https://ACCOUNTNAME.beanstalkapp.com/access_tokens
 
-    // Get available repositories
-    beanstalk.getRepositories(function(error, data) {
-      console.log(data); // Contains an array with repositories
-    });
-    
+var beanstalk = require("beanstalk").createClient("account", "username", "token");
+
+// Get available repositories
+beanstalk.getRepositories(function(error, data) {
+  console.log(data); // Contains an array with repositories
+});
+```
+
 # References
 
 - [Beanstalk API reference](http://api.beanstalkapp.com/)
