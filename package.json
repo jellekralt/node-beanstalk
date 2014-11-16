@@ -27,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/jellekralt/node-beanstalk/issues"
   },
-  "homepage": "https://github.com/jellekralt/node-beanstalk"
+  "homepage": "https://github.com/jellekralt/node-beanstalk",
+  "dependencies": {
+    "request": "^2.48.0"
+  }
 }
