@@ -316,3 +316,67 @@ Client.prototype.getChangeset = function(repositoryId, revisionId, callback) {
 Client.prototype.getChangesetDiffs = function(repositoryId, revisionId, callback) {
   this.get('/api/changesets/' + revisionId + '/differences.json?repository_id=' + repositoryId, null, callback);
 };
+
+
+/**
+ * Comment Resource
+ * See: http://api.beanstalkapp.com/comment.html
+ */
+
+/**
+ * Find All Comments for Repository
+ * @param  {Integer} repositoryId Repository ID
+ * @param  {Object} [params] Find params (optional)
+ * @param  {Function} callback Gets called after request is complete
+ */
+Client.prototype.getCommentsForRepository = function(repositoryId, params, callback) {
+  if(typeof params === 'function') {
+    callback = params;
+    params = null;
+  }
+  this.get('/api/' + repositoryId + '/comments.json', params, callback);
+};
+
+/**
+ * Find All Comments for Changeset
+ * @param  {Integer} repositoryId Repository ID
+ * @param  {Integer} revisionId Revision ID
+ * @param  {Object} [params] Find params (optional)
+ * @param  {Function} callback Gets called after request is complete
+ */
+Client.prototype.getCommentsForChangeset = function(repositoryId, revisionId, params, callback) {
+  if(typeof params === 'function') {
+    callback = params;
+    params = { revision: revisionId };
+  } else {
+    params.revision = revisionId;
+  }
+  this.get('/api/' + repositoryId + '/comments.json', params, callback);
+};
+
+/**
+ * Find All Comments for User
+ * @param  {Integer} userId User ID
+ * @param  {Object} [params] Find params (optional)
+ * @param  {Function} callback Gets called after request is complete
+ */
+Client.prototype.getCommentsForUser = function(userId, params, callback) {
+  if(typeof params === 'function') {
+    callback = params;
+    params = { user_id: userId };
+  } else {
+    params.user_id = userId;
+  }
+  this.get('/api/comments/user.json', params, callback);
+};
+
+/**
+ * Find Comment
+ * @param  {Integer} repositoryId Repository ID
+ * @param  {Integer} commentId Comment ID
+ * @param  {Function} callback Gets called after request is complete
+ */
+Client.prototype.getComment = function(repositoryId, commentId, callback) {
+  this.get('/api/' + repositoryId + '/comments/' + commentId + '.json', null, callback);
+};
+
