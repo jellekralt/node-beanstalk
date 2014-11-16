@@ -52,10 +52,23 @@ Client.prototype.get = function(path, params, callback) {
 
 };
 
+/** Account functions */
+
+/**
+ * Gets the Beanstalk account data
+ * See: http://api.beanstalkapp.com/account.html
+ * @param  {Function} callback Gets called after request is complete
+ */
+Client.prototype.getAccount = function(callback) {
+  this.get('/api/account.json', null, callback);
+};
+
+
+/** Repository functions */
+
 /**
  * Gets all repositories 
  * See: http://api.beanstalkapp.com/repository.html
- * @param  {Object}   params   GET parameters
  * @param  {Function} callback Gets called after request is complete
  */
 Client.prototype.getRepositories = function(callback) {
