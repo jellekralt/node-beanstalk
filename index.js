@@ -55,12 +55,12 @@ Client.prototype.get = function(path, params, callback) {
 
 
 /**
- * Account functions
+ * Account Resource
  * See: http://api.beanstalkapp.com/account.html
  */
 
 /**
- * Gets the Beanstalk account data
+ * Find Account
  * @param  {Function} callback Gets called after request is complete
  */
 Client.prototype.getAccount = function(callback) {
@@ -69,12 +69,12 @@ Client.prototype.getAccount = function(callback) {
 
 
 /** 
- * Plan functions
+ * Plan Resource
  * See: http://api.beanstalkapp.com/plan.html
  */
 
 /**
- * Gets all plans
+ * Find All Plans
  * @param  {Function} callback Gets called after request is complete
  */
 Client.prototype.getPlans = function(callback) {
@@ -83,12 +83,12 @@ Client.prototype.getPlans = function(callback) {
 
 
 /** 
- * User functions
+ * User Resource
  * See: http://api.beanstalkapp.com/user.html
  */
 
 /**
- * Gets all users
+ * Find All Users
  * @param  {Function} callback Gets called after request is complete
  */
 Client.prototype.getUsers = function(callback) {
@@ -96,7 +96,7 @@ Client.prototype.getUsers = function(callback) {
 };
 
 /**
- * Gets a user
+ * Find User
  * @param  {Integer}  userId  User ID
  * @param  {Function} callback Gets called after request is complete
  */
@@ -105,7 +105,7 @@ Client.prototype.getUser = function(userId, callback) {
 };
 
 /**
- * Gets the current user
+ * Find User for Current Session
  * @param  {Function} callback Gets called after request is complete
  */
 Client.prototype.getCurrentUser = function(callback) {
