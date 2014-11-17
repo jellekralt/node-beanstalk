@@ -27,6 +27,9 @@ beanstalk.getRepositories(function(error, data) {
 
 - [Beanstalk API reference](http://api.beanstalkapp.com/)
 
+# Support
+Found a bug? Have a great idea? Feel free to create an issue or a pull request!
+
 # License
 
 The MIT License (MIT)
